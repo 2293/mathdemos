@@ -1,5 +1,6 @@
 math demos with sagecell 数学演示，用sagemath/sagecell驱动
 <ul>
+<li><a href="000003solve_3n%2B1_problem/">000003solve_3n+1_problem/</a></li>
 <li><a href="000087polar_plot.html">000087polar_plot.html</a></li>
 <li><a href="100001historical%20prime%20factor.html">100001historical prime factor.html</a></li>
 <li><a href="100012significant%20prime%20factor.html">100012significant prime factor.html</a></li>
@@ -22,4 +23,4 @@ math demos with sagecell 数学演示，用sagemath/sagecell驱动
 {% endfor %}
 </ul>
 ![mathdemos](logo.png)
-<h5><a href="https://github.com/2293/mathdemos/new/main">Contribute to this project</a></h5>
+<h5><a href="https://github.com/2293/mathdemos/new/main">Contribute to this site</a></h5>
