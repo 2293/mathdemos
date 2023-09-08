@@ -1,9 +1,7 @@
-# https://2293.github.io/mathdemos
-math demos with sagecell 数学演示，用sagemath/sagecell制作
+math demos with sagecell 数学演示，用sagemath/sagecell驱动
 
-### mathdemos
 <ul>
-  {% for page in site.pages %}
+  {% for page in site.html_pages %}
   <li><a href="{{ page.url }}">{{ page.title }}</a></li>
   {% endfor %}
 </ul>
