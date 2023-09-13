@@ -10,12 +10,14 @@
         onload="renderMathInElement(document.body);"></script>
     <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
     <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
-    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true});</script>
+    <script>sagecell.makeSagecell({ "inputLocation": "#sage1",autoeval:true, linked:true,linkKey:'hpf'});
+    sagecell.makeSagecell({ "inputLocation": "#sage2",autoeval:false, linked:true,linkKey:'hpf'});
+    </script>
  
 </head>
 
 <body>
-<h2><a href="/mathdemos"><small>MathDemos:</small></a>historical prime factor hpf(n)</h2>
+<h2><a href="./"><small>MathDemos:</small></a>historical prime factor hpf(n)</h2>
 <div>
 <p>Visit <a href="https://oeis.org/draft/A365521">https://oeis.org/draft/A365521</a> for the latest revision of <a href="https://oeis.org/A365521">A365521</a>  in OEIS.</p>
 <p>historical prime factor, hpf(n): is defined as the prime factor of $n$ that has not appeared 
@@ -24,7 +26,7 @@ for the longest time in $hpf(1)..hpf(n-1)$. hpf(1)=1</p>
 hpf(6)=3, because hpf(4)=2;hpf(12)=2, because hpf(9)=3, hpf(8)=2, here 2 is more historical than 3;   
 hpf(30)=2, because recently hpf(27)=3, hpf(25)=5.</p>		
 </div>
-<div class="sage">
+<div class="sage" id="sage1">
 <script type="text/x-sage">
 def hpf_seq(top):
     H=[0,1,2,3]
@@ -46,6 +48,24 @@ print(m)
 </div>
 <div><p>Note: hpf(120)=hpf(125)=5, 113..127 </p>
 <h4>Q:when Prime[i]&lt; m &lt; n &lt; Prime[i+1] and hpf(m)==hpf(n)? </h4>
+</div>
+<div class="sage" id="sage2">
+<script type="text/x-sage">
+def verify_hpf_distinct_in_two_consecutive_primes(top):
+    p=nth_prime
+    S=hpf_seq(top)
+    howmanyprimes=prime_pi(top-1)
+    i=1
+    while(i<howmanyprimes):
+        interval=S[p(i):p(i+1)+1]
+        #print(interval)
+        if len(interval)!=len(set(interval)):
+            print('NOT distinct at:',p(i),interval)
+        i+=1
+    return i
+verify_hpf_distinct_in_two_consecutive_primes(100000)  
+# 100000 and 300000 have the same result.     
+</script>
 </div>
 <hr/>
 <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
