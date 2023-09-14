@@ -1,4 +1,9 @@
-math demos with sagecell 数学演示，用sagemath/sagecell驱动
+math demos with sagecell 数学演示，以sagemath/sagecell驱动
+
+0 Foundations of Mathematics | 1 Number Theory | 2 Discrete Mathematics | 3 Algebra |
+4 Geometry | 5 Calculus and Analysis | 6 Applied Mathematics | 7 Probability and Statistics |
+8 Topology | 9 History and Terminology | 10 Recreational Mathematics | 11 misc
+
 <ul>
 <li><a href="000003solve_3n%2B1_problem/">000003solve_3n+1_problem/</a></li>
 <li><a href="000087polar_plot.html">000087polar_plot.html</a></li>

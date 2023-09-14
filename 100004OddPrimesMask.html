@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Odd Primes Mask</title>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true});</script>
+</head>
+
+<body>
+<h2><a href="/mathdemos"><small>MathDemos:</small></a>Odd Primes Mask, opm(bits)</h2>
+<div><p>Odd Primes Mask: `if is_prime(2*k+1) 1 else 0`. 
+It can be implemented by Bitset in sagemath or bitarray in Python.</p>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+odd_primes=primes_first_n(2^8+1)[1:]
+odd_primes_half_sub1=[(p-1)//2 for p in odd_primes]
+OddPrimesMask=FrozenBitset(odd_primes_half_sub1)
+opm=OddPrimesMask
+print(opm)
+print([x*2+1 for x in list(opm)])
+    
+</script>
+</div>
+<div><p>Sieve of Eratosthenes by OddPrimesMask</p></div>
+<div class="sage">
+<script type="text/x-sage">
+opm=Bitset('01'+'110' * 32)
+# not finished yet...
+
+print(opm)
+print([x*2+1 for x in list(opm)])
+    
+</script>
+</div>
+
+<hr/>
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+-Editor:Cody Luo -Date:2023-09-14 | 
+This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100004OddPrimesMask.html">Improve this page</a>.
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="2293/mathdemos"
+        data-repo-id="R_kgDOJ7wWzA"
+        data-category="General"
+        data-category-id="DIC_kwDOJ7wWzM4CZLY3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>
