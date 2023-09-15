@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>characteristic prime factor cpf(n)</title>
+    <link rel="stylesheet" href="https://unpkg.com/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
+    <script defer src="https://unpkg.com/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
+    <script defer src="https://unpkg.com/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true});</script>
+ 
+</head>
+
+<body>
+<h2><a href="./"><small>MathDemos:</small></a>characteristic prime factor cpf(n)</h2>
+<div>
+<!-- <p>Visit <a href="https://oeis.org/draft/A365521">https://oeis.org/draft/A365521</a> for the latest revision of <a href="https://oeis.org/A365521">A365521</a>  in OEIS.</p> -->
+<p>characteristic prime factor cpf(n) is altered from <a href="100001historical%20prime%20factor.html">historical prime factor hpf(n)</a>. 
+hpf(n) is defined as the prime factor of $n$ that has not appeared 
+for the longest time in $hpf(1)..hpf(n-1)$. </p>
+<p>hpf(n) selects the most recently unoccurring prime factor of $n$. </p>		
+</div>
+<div>
+    <p>特征素因子 cpf(n) 是从历史素因子 hpf(n) 更改而来。
+
+    </p>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+def cpf_seq(top):
+    m=top+prime_pi(top)
+    S=[0]*m;S[1]=1
+    for n in range(2,m):
+        if is_prime_power(n): S[n]=factor(n)[0][0]
+    for n in range(4,top):
+        if S[n]==0 : # n is composite and not prime power
+            prime_factors=[part[0] for part in list(factor(n))]
+            cursor=n+prime_pi(n)-2
+            while True:
+                if S[cursor]!=0 and (S[cursor] in prime_factors):
+                    prime_factors.remove(S[cursor])
+                cursor-=1
+                if len(prime_factors)<=1: break
+            S[n]=prime_factors[0]
+    return S[:top]
+#m=cpf_seq(301)
+m=matrix(ZZ,12,100,cpf_seq(1200))
+print(m)
+    
+</script>
+</div>
+<div><p></p>
+<h4>Q:</h4>
+</div>
+<hr/>
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+-Author:Jianglin Luo -Date:2023-09-08 | 
+This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100003characteristic%20prime%20factor.html">Improve this page</a>.
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="2293/mathdemos"
+        data-repo-id="R_kgDOJ7wWzA"
+        data-category="General"
+        data-category-id="DIC_kwDOJ7wWzM4CZLY3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>

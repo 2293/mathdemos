@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>sagecell examples</title>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:false});</script>
+</head>
+
+<body>
+<h2><a href="./"><small>MathDemos:</small></a>sagecell examples</h2>
+
+<div class="sage">
+<script type="text/x-sage">
+k=20; 
+m = matrix(ZZ, k, [(i*j)%k for i in [0..k-1] for j in [0..k-1]]);
+m.plot(cmap='gray') 
+</script>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+fig1=EllipticCurve([0,0,1,-1,0]).plot(plot_points=300,thickness=3)
+fig2=EllipticCurve(GF(97), [0,0,1,-1,0]).plot(aspect_ratio=1)
+show(fig1, fig2)
+</script>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+complex_plot(zeta, (-30,5), (-8,8))
+</script>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+var('a, b, c, x')
+dataprime = [(i, nth_prime(i)) for i in range(100, 50000, 100)]
+find_fit(dataprime, a * x * log(b * x), parameters = [a, b], variables = [x])
+</script>
+</div>
+<hr/>
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+    -Editor:Cody Luo -Date:2023-09-15 | 
+    This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/000001sagecell-examples.html">Improve this page</a>.
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="2293/mathdemos"
+        data-repo-id="R_kgDOJ7wWzA"
+        data-category="General"
+        data-category-id="DIC_kwDOJ7wWzM4CZLY3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>

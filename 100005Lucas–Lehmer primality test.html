@@ -3,30 +3,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>t</title>
+    <title>Lucas–Lehmer primality test</title>
     <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
     <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true});</script>
 </head>
 
 <body>
-<h2><a href="./"><small>MathDemos:</small></a>significant prime factor spf(n)</h2>
-<div><p>
-<a href="https://oeis.org/A088387">A088387</a> in OEIS		spf(n) is the prime corresponding to largest prime power factor of n, a(1)=1.<br> 
-Most significant prime factor of n: If n = (p_1^e_1)(p_2^e_2)(p_3^e_3)... and max(p_1^e_1,p_2^e_2,...) = p_k^e_k then spf(n) = p_k.
+<h2><a href="./"><small>MathDemos:</small></a>Lucas–Lehmer primality test</h2>
+<div><p>Lucas–Lehmer test (LLT) is a primality test for Mersenne numbers 2^p-1. 
+The test was originally developed by Édouard Lucas in 1878[1] and subsequently proved by Derrick Henry Lehmer in 1930.
 </p></div>
 <div class="sage">
 <script type="text/x-sage">
-def spf(n):
-    return max(((p**e, p) for p, e in list(factor(n))), default=(0, 1))[1]
-
-list([spf(n) for n in range(113,128)])
-    
+def is_prime_lucas_lehmer(p):
+    s = Mod(4, 2^p - 1)
+    for i in range(3, p+1): s = s^2 - 2
+    return s == 0
+[is_prime_lucas_lehmer(11),is_prime_lucas_lehmer(127),is_prime_lucas_lehmer(521)]    
 </script>
 </div>
 <hr/>
 <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
--Editor:Cody Luo -Date:2023-09-14 | 
-This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100001historical%20prime%20factor.html">Improve this page</a>.
+-Editor:Cody Luo -Date:2023-09-15 | 
+This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100005Lucas–Lehmer%20primality%20test.html">Improve this page</a>.
 </div>
 <script src="https://giscus.app/client.js"
         data-repo="2293/mathdemos"
