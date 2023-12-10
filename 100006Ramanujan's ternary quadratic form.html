@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>t</title>
+    <title>Ramanujan's ternary quadratic form</title>
     <link rel="stylesheet" href="https://unpkg.com/katex@0.16.8/dist/katex.min.css" integrity="sha384-GvrOXuhMATgEsSwCs4smul74iXGOixntILdUW9XmUC6+HX0sLNAK3q71HotJqlAn" crossorigin="anonymous">
     <script defer src="https://unpkg.com/katex@0.16.8/dist/katex.min.js" integrity="sha384-cpW21h6RZv/phavutF+AuVYrr+dA8xD9zs6FwLpaCct6O9ctzYFfFr4dgmgccOTx" crossorigin="anonymous"></script>
     <script defer src="https://unpkg.com/katex@0.16.8/dist/contrib/auto-render.min.js" integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
@@ -13,24 +13,31 @@
 </head>
 
 <body>
-<h2><a href="./"><small>MathDemos:</small></a>significant prime factor spf(n)</h2>
-<div><p>
-<a href="https://oeis.org/A088387">A088387</a> in OEIS		spf(n) is the prime corresponding to largest prime power factor of n, a(1)=1.<br> 
-Most significant prime factor of n: If n = (p_1^e_1)(p_2^e_2)(p_3^e_3)... and max(p_1^e_1,p_2^e_2,...) = p_k^e_k then spf(n) = p_k.
-</p></div>
+<h2><a href="./"><small>MathDemos:</small></a>Ramanujan's ternary quadratic form</h2>
+<div><p><a href="https://en.wikipedia.org/wiki/Ramanujan%27s_ternary_quadratic_form">Ramanujan's ternary quadratic form</a> 
+    is the algebraic expression $x^2 + y^2 + 10z^2$ with integral values for x, y and z. 
+    Galway verified that there are only eighteen numbers less than $2*10^{10}$ not representable in the form $x^2 + y^2 + 10z^2$. 
+    Based on Galway's computations, Ken Ono and K. Soundararajan formulated the following conjecture:<br>
+    The odd positive integers which are not of the form $x^2 + y^2 + 10z^2$ are: 3, 7, 21, 31, 33, 43, 67, 79, 87, 133, 217, 219, 223, 253, 307, 391, 679, 2719.</p>
+</div>
 <div class="sage">
 <script type="text/x-sage">
-def spf(n):
-    return max(((p**e, p) for p, e in list(factor(n))), default=(0, 1))[1]
-
-list([spf(n) for n in range(113,128)])
-    
+top=200; topsquare=top^2;
+s=[n*n for n in range(0,top)]
+bset=Bitset()
+for x in range(0,top,2):
+    for y in range(1,top,2):
+        for z in range(0,top):
+            t=s[x] + s[y] + 10*s[z]
+            if(t<topsquare):
+                bset.add((t-1)/2)
+print([2*k+1 for k in list(bset.complement())])
 </script>
 </div>
 <hr/>
 <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
--Editor:Cody Luo -Date:2023-09-14 | 
-This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/">Improve this page</a>.
+-Editor:Cody Luo -Date:2023-09-16 | 
+This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100006Ramanujan%27s%20ternary%20quadratic%20form.html">Improve this page</a>.
 </div>
 <script src="https://giscus.app/client.js"
         data-repo="2293/mathdemos"

@@ -3,18 +3,22 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>significant prime factor spf(n)</title>
+    <title>runner-up number</title>
     <!-- <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css"> -->
     <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
     <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true,linked:true,linkKey:'mathdemo'});</script>
 </head>
 
 <body>
-<h2><a href="/mathdemos"><small>MathDemos:</small></a>significant prime factor spf(n)</h2>
-<div><p>
-<a href="https://oeis.org/A088387">A088387</a> in OEIS		spf(n) is the prime corresponding to largest prime power factor of n, a(1)=1.<br> 
-Most significant prime factor of n: If n = (p_1^e_1)(p_2^e_2)(p_3^e_3)... and max(p_1^e_1,p_2^e_2,...) = p_k^e_k then spf(n) = p_k.
-</p></div>
+<h2><a href="/mathdemos"><small>MathDemos:</small></a>runner-up number</h2>
+<div>
+<p>Visit <a href="https://oeis.org/draft/A365521">https://oeis.org/draft/A365521</a> for the latest revision of <a href="https://oeis.org/A365521">A365521</a>  in OEIS.</p>
+<p>跟跑数列,收集在两个相继质数之间具有相同显著质因子的一组数, 但显著部分最大的那个数被排除.</p>
+<p>This sequence, so called runner-up numbers, collects a set of numbers that have the same significant prime factor between two successive prime numbers, but the number with the largest significant part is excluded.
+    Runner-up numbers are the integers i such that there exists j,prevprime(i)<j<nextprime(i) satisfies
+    A088387(i)=A088387(j) and A034699(i)&lt;A034699(j).
+</p>
+</div>
 <div class="sage">
 <script type="text/x-sage">
 def spf(n):

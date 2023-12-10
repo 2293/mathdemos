@@ -51,7 +51,7 @@ print(m)
 </div>
 <div class="sage" id="sage2">
 <script type="text/x-sage">
-def verify_hpf_distinct_in_two_consecutive_primes(top):
+def verify_hpf_distinct_in_two_successive_primes(top):
     p=nth_prime
     S=hpf_seq(top)
     howmanyprimes=prime_pi(top-1)
@@ -63,8 +63,8 @@ def verify_hpf_distinct_in_two_consecutive_primes(top):
             print('NOT distinct at:',p(i),interval)
         i+=1
     return i
-verify_hpf_distinct_in_two_consecutive_primes(100000)  
-# 100000 and 300000 have the same result.     
+verify_hpf_distinct_in_two_successive_primes(100000)  
+# 100000 and 500000 have the same result.     
 </script>
 </div>
 <hr/>

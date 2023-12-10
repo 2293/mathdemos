@@ -24,15 +24,20 @@ print([x*2+1 for x in list(opm)])
     
 </script>
 </div>
-<div><p>Sieve of Eratosthenes by OddPrimesMask</p></div>
+<div><p>Sieve of Eratosthenes by OddPrimesMask</p>
+<p>$(2a+1)(2b+1)=2(2ab+a+b)+1$</p>
+</div>
 <div class="sage">
 <script type="text/x-sage">
-opm=Bitset('01'+'110' * 32)
-# not finished yet...
-
+def odd_primes_mask(top=2^10):
+    opm=Bitset('01'+'110' * (5*top//3-1))
+    for b in (2..top):
+        for a in (2..b):
+            opm.discard(2*a*b+a+b)
+    return opm
+opm=odd_primes_mask(2^11)
 print(opm)
-print([x*2+1 for x in list(opm)])
-    
+print([x*2+1 for x in list(opm)]) 
 </script>
 </div>
 
