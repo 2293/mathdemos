@@ -9,8 +9,8 @@
 </head>
 
 <body>
-<h2><a href="./"><small>MathDemos:</small></a>Odd Primes Mask, opm(bits)</h2>
-<div><p>Odd Primes Mask: `if is_prime(2*k+1) 1 else 0`. 
+<h2><a href="./"><small>MathDemos:</small></a>Odd Primes Mask</h2>
+<div><p>Odd Primes Mask: `if is_prime(2*k+1) 1 else 0`;  0111011011010011...<br/>
 It can be implemented by <a href="https://doc.sagemath.org/html/en/reference/data_structures/sage/data_structures/bitset.html">Bitset </a> in sagemath or bitarray in Python.</p>
 </div>
 <div class="sage">
@@ -36,7 +36,7 @@ for b in (2..top):
 def odd_primes_mask(bits=15*2^8):
     opm=Bitset('011101101101001'+'100101101101001' *(bits//15-1) )
     for b in (3..(bits-3)//7):
-        for m in range(7*b+3,bits+1,2*b+1):
+        for m in range(7*b+3,min(bits+1,2*b*(b+1)+1),2*b+1):
             opm.discard(m)
     return opm
 opm=odd_primes_mask(15*2^10)
@@ -50,7 +50,7 @@ In other words, any repeated (`01`) substring of OddPrimesMask occures infinitel
 </p></div>
 <hr/>
 <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
--Editor:Cody Luo -Date:2023-09-14 | 
+-Editor:Cody Luo -Date:2023-09-14, 2023-12-11 | 
 This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100004OddPrimesMask.html">Improve this page</a>.
 </div>
 <script src="https://giscus.app/client.js"
