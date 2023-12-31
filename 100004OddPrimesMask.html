@@ -33,20 +33,36 @@ for b in (2..top):
 </div>
 <div class="sage">
 <script type="text/x-sage">
+def primes_sieve(top=10^2):
+    opm=Bitset('10001')
+    opm.add(2*top*top+top+top)
+    opm=opm.complement()
+
+    for b in (1..top):
+        for m in range(3*b+1,2*b*(b+1)+1,2*b+1):
+            opm.discard(m)
+    return opm
+opm=primes_sieve(10^2)
+print(opm)
+print([x*2+1 for x in list(opm)]) 
+</script>
+</div>
+<div class="sage">
+<script type="text/x-sage">
 def odd_primes_mask(bits=15*2^8):
     opm=Bitset('011101101101001'+'100101101101001' *(bits//15-1) )
     for b in (3..(bits-3)//7):
         for m in range(7*b+3,min(bits+1,2*b*(b+1)+1),2*b+1):
             opm.discard(m)
     return opm
-opm=odd_primes_mask(15*2^10)
+opm=odd_primes_mask(15*10^4)
 print(opm)
 print([x*2+1 for x in list(opm)]) 
 </script>
 </div>
 <div>
 <p>**Prime-Gap-Subsegments-Theorem**: In prime gap sequence, if any subsegment occurs twice, then it will continue to occur infinitely times.  such as `{2}, {4},{2*k},{2,4,2},{6,6},{2,6,4,2}...`.
-In other words, any repeated (`01`) substring of OddPrimesMask occures infinitely times. Such as `0`*k, `101101101`, `1001001`,... (Jianglin Luo, 2018)
+In other words, any repeated substring of OddPrimesMask occures infinitely times. Such as `0`*k, `101101101`, `1001001`,... (Jianglin Luo, 2018)
 </p></div>
 <hr/>
 <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
