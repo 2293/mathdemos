@@ -15,7 +15,7 @@ It can be implemented by <a href="https://doc.sagemath.org/html/en/reference/dat
 </div>
 <div class="sage">
 <script type="text/x-sage">
-odd_primes=primes_first_n(2^8+1)[1:]
+odd_primes=primes_first_n(2^8+1)[1:]npx
 odd_primes_half_sub1=[(p-1)//2 for p in odd_primes]
 OddPrimesMask=FrozenBitset(odd_primes_half_sub1)
 opm=OddPrimesMask
@@ -27,36 +27,22 @@ print([x*2+1 for x in list(opm)])
 <div><p>Sieve of Eratosthenes by OddPrimesMask</p>
 <p>$(2a+1)(2b+1)=2(2ab+a+b)+1$</p>
 <pre>opm=Bitset('01'+'110' * (5*bits//3-1))
+# 2*2*top+2+top=bits
+top=(bits-2)//5
 for b in (2..top):
     for a in (2..b):
+        #if 2*a*b+a+b <= bits:
         opm.discard(2*a*b+a+b)</pre>
 </div>
 <div class="sage">
 <script type="text/x-sage">
-def primes_sieve(top=10^2):
-    opm=Bitset('10001')
-    opm.add(2*top*top+top+top)
-    opm=opm.complement()
-
-    for b in (1..top):
-        for m in range(3*b+1,2*b*(b+1)+1,2*b+1):
+def odd_primes_mask(bits=15*2^8):
+    opm=Bitset('011101101101001'+'100101101101001' *(bits//15-1) )
+    for b in (3..(bits-3)//7):
+        for m in range(7*b+3,min(bits+1,2*b*(b+1)+1),2*b+1):
             opm.discard(m)
     return opm
-opm=primes_sieve(10^2)
-print(opm)
-print([x*2+1 for x in list(opm)]) 
-</script>
-</div>
-<div class="sage">
-<script type="text/x-sage">
-def odd_primes_mask(top=15*20):
-    bits =2*top*top+top+top
-    opm=Bitset('011101101101001'+'100101101101001' *(bits//15-1) )  
-    for b in (3..top):
-        for m in range(7*b+3,2*b*(b+1)+1,2*b+1):
-            opm.discard(m)
-    return opm
-opm=odd_primes_mask(top=15*30)
+opm=odd_primes_mask(15*2^10)
 print(opm)
 print([x*2+1 for x in list(opm)]) 
 </script>
