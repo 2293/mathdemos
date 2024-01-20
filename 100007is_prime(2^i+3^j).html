@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>is_prime(2^i+3^j)</title>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true});</script>
+</head>
+
+<body>
+<h2><a href="./"><small>MathDemos:</small></a>is_prime(2^i+3^j)</h2>
+<div class="sage">
+<script type="text/x-sage">
+k=20
+m=matrix(ZZ,k,k,lambda i,j:is_prime(2^i+3^j))
+print(m)
+print(det(m))
+print(m.submatrix(0,0,8,8)^(-1))
+print(m.submatrix(0,0,10,10)^(-1))
+
+</script>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+def mat(k): 
+    return matrix(ZZ,k,k,lambda i,j:is_prime(2^i+3^j))
+m=mat(80)
+print(m)
+print(det(m)) 
+print([det(m.submatrix(0,0,k,k)) for k in (0..80)])
+</script>
+</div>
+<p>Q1: define an array a(n)= det(mat(n)), when a(n)==0?<br>
+Q2: when k=?, mat(k)^(-1) is an interger matrix?<br>
+
+</p>
+<hr/>
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+    -Editor:Cody Luo -Date:2023-09-08 | 
+    This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/000087polar_plot.html">Edit this page</a>.
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="2293/mathdemos"
+        data-repo-id="R_kgDOJ7wWzA"
+        data-category="General"
+        data-category-id="DIC_kwDOJ7wWzM4CZLY3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>
