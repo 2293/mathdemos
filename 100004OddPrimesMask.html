@@ -15,7 +15,7 @@ It can be implemented by <a href="https://doc.sagemath.org/html/en/reference/dat
 </div>
 <div class="sage">
 <script type="text/x-sage">
-odd_primes=primes_first_n(2^8+1)[1:]npx
+odd_primes=primes_first_n(2^8+1)[1:]
 odd_primes_half_sub1=[(p-1)//2 for p in odd_primes]
 OddPrimesMask=FrozenBitset(odd_primes_half_sub1)
 opm=OddPrimesMask
