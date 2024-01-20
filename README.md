@@ -13,15 +13,18 @@ math demos with sagecell 数学演示，以sagemath/sagecell驱动
 <li><a href="100004OddPrimesMask.html">100004OddPrimesMask.html</a></li>
 <li><a href="100004template.html">100004template.html</a></li>
 <li><a href="100005Lucas%E2%80%93Lehmer%20primality%20test.html">100005Lucas–Lehmer primality test.html</a></li>
+<li><a href="100006Ramanujan%27s%20ternary%20quadratic%20form.html">100006Ramanujan's ternary quadratic form.html</a></li>
+<li><a href="100007is_prime%282%5Ei%2B3%5Ej%29.html">100007is_prime(2^i+3^j).html</a></li>
 <li><a href="100012significant%20prime%20factor.html">100012significant prime factor.html</a></li>
 <li><a href="110001simple-sagecell-editor.html">110001simple-sagecell-editor.html</a></li>
 <li><a href="200009PaleyGraph.html">200009PaleyGraph.html</a></li>
 <li><a href="500001Asymptotic%20Notation.html">500001Asymptotic Notation.html</a></li>
-<li><a href="images/">images/</a></li>
+<li><a href="drafts/">drafts/</a></li>
 <li><a href="LICENSE">LICENSE</a></li>
 <li><a href="logo.png">logo.png</a></li>
 <li><a href="logo.svg">logo.svg</a></li>
 <li><a href="README.md">README.md</a></li>
+<li><a href="sage-help.html">sage-help.html</a></li>
 <li><a href="todo.md">todo.md</a></li>
 </ul>
 

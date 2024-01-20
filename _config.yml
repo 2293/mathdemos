@@ -1,0 +1,3 @@
+# Serving
+baseurl             : "mathdemos" # does not include hostname
+show_dir_listing    : true
