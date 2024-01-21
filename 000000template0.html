@@ -3,43 +3,29 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>is_prime(2^i+3^j)</title>
+    <title>polar_plot</title>
     <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
     <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
     <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true});</script>
 </head>
 
 <body>
-<h2><a href="./"><small>MathDemos:</small></a>is_prime(2^i+3^j)</h2>
+<h2><a href="./"><small>MathDemos:</small></a>polar_plot</h2>
+<p>sage.plot.plot.polar_plot(funcs, aspect_ratio=1.0, *args, **kwds)<br/>
+    polar_plot takes a single function or a list or tuple of functions and plots them with polar coordinates in the given domain.</p>
+
 <div class="sage">
 <script type="text/x-sage">
-k=20
-m=matrix(ZZ,k,k,lambda i,j:is_prime(2^i+3^j))
-print(m)
-print(det(m))
-print(m.submatrix(0,0,8,8)^(-1))
-print(m.submatrix(0,0,10,10)^(-1))
-
+var('t')
+polar_plot(sin(1/t), (t, 0, 2*pi), color='blue')
+#PolarPlot[Sin[1/t], {t, 0, 2 Pi}]  (*Mathematica*) 
 </script>
 </div>
-<div class="sage">
-<script type="text/x-sage">
-def mat(k): 
-    return matrix(ZZ,k,k,lambda i,j:is_prime(2^i+3^j))
-m=mat(80)
-print(m)
-print(det(m)) 
-print([det(m.submatrix(0,0,k,k)) for k in (0..80)])
-</script>
-</div>
-<p>Q1: define an array a(n)= det(mat(n)), when a(n)==0?<br>
-Q2: when k=?, mat(k)^(-1) is an interger matrix?<br>
 
-</p>
 <hr/>
 <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
     -Editor:Cody Luo -Date:2023-09-08 | 
-    This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100007is_prime(2^i+3^j).html">Edit this page</a>.
+    This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/">Edit this page</a>.
 </div>
 <script src="https://giscus.app/client.js"
         data-repo="2293/mathdemos"
