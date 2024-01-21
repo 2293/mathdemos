@@ -18,6 +18,7 @@ All composite odd numbers ${\displaystyle \scriptstyle N\,=\,2m+1,\,m\,\geq \,4,
 https://oeis.org/wiki/Odd_composites <br>
 https://oeis.org/A083487 <br></p>
 
+
 <div class="sage">
 <script type="text/x-sage">
 def entry(i, j): return 2*i*j + i + j
@@ -27,9 +28,13 @@ for i in (1..20):
 
 </script>
 </div>
+<p>GridGraph[{i+1，j+1}] has $2ij+i+j$ edges in total, increasing $2i+2j$ edges from GridGraph[{i，j}]</p>
 <div class="sage">
 <script type="text/x-sage">
-
+g23 = graphs.GridGraph([2,3])
+g34 = graphs.GridGraph([3,4])
+(g23.show(),g34.show())
+(g23.size(),g34.size())        
 </script>
 </div>
 
