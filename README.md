@@ -33,12 +33,12 @@ math demos with sagecell 数学演示，以sagemath/sagecell驱动
 
 <ul>
   {% for page in site.pages %}
-  <li><a href="{{ page.url }}">{{ page.url }}</a></li>
+  <li><a href="{{ page.url | relative_url }}">{{ page.url }}</a></li>
   {% endfor %}
 </ul>
 <ul>
 {% for post in site.posts %}	
-    <li><a href="{{ post.url }}">{{ post.title }}</a><small><strong>{{ post.date | date: "%B %e, %Y" }}</strong> . {{ post.category }} </small></li>	
+    <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a><small><strong>{{ post.date | date: "%B %e, %Y" }}</strong> . {{ post.category }} </small></li>	
 {% endfor %}
 </ul>
 ![mathdemos](logo.png)
