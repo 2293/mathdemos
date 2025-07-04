@@ -15,7 +15,7 @@
 <a href="https://oeis.org/A088387">A088387</a> in OEIS		spf(n) is the prime corresponding to largest prime power factor of n, a(1)=1.<br> 
 Most significant prime factor of n: If n = (p_1^e_1)(p_2^e_2)(p_3^e_3)... and max(p_1^e_1,p_2^e_2,...) = p_k^e_k then spf(n) = p_k.
 </p></div>
-<div class="sage">
+<div class="sage" id="sage1">
 <script type="text/x-sage">
 def spf(n):
     return max(((p**e, p) for p, e in list(factor(n))), default=(0, 1))[1]
