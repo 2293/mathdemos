@@ -5,8 +5,13 @@ math demos with sagecell 数学演示，以sagemath/sagecell驱动
 8 Topology | 9 History and Terminology | 10 Recreational Mathematics | 11 misc
 
 <ul>{% for file in site.static_files %}{% if file.extname == ".html" %}
-<li><a href="{{file.path | replace_first: '/', ''}}">{{file.path | replace_first: '/', ''}}</a></li>{% endif %}{% endfor %}</ul>
-
+<li><a href="{{file.path | replace_first: '/', ''}}">{{file.path | replace_first: '/', ''}}</a></li>{% endif %}{% endfor %}
+</ul>
+<ul>
+  {% for page in site.pages %}
+  <li><a href="{{ page.url | relative_url }}">{{ page.url }}</a></li>
+  {% endfor %}
+</ul>
 <ul>
 {% for post in site.posts %}	
     <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a><small><strong>{{ post.date | date: "%B %e, %Y" }}</strong> . {{ post.category }} </small></li>	
