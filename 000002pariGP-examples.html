@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Pari/GP examples</title>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,languages: ["gp", "sage"],autoeval:false});</script>
+</head>
+
+<body>
+<h2><a href="./"><small>MathDemos:</small></a>Pari/GP examples</h2>
+<a href="https://pari.math.u-bordeaux.fr/pub/pari/manuals/2.15.5/refcard.pdf">Pari-GP reference card</a>
+<div>
+<textarea>
+\q ; \p200; \u; \r filename;
+?function  ??keyword  ???pattern whatnow(f)
+
+Input/Output
+previous result, the result before      %, %`, %``, etc.
+n-th result since startup               %n
+separate multiple statements on line    ;
+extend statement on additional lines    \
+extend statements on several lines      {seq1; seq2;}
+comment                                 /* . . . */
+one-line comment                        \\ . . .
+
+Metacommands & Defaults
+set default d to val                    default({d}, {val})
+toggle timer on/off                     #   note #(seq) return length(seq)
+print time for last result              ##
+print defaults                          \d
+set debug level to n                    \g n
+set memory debug level to n             \gm n
+set n significant digits / bits         \p n, \pb n
+set n terms in series                   \ps n
+quit GP                                 \q
+print the list of PARI types            \t
+print the list of user-defined functions \u
+read file into GP                       \r filename; read({file})
+set debuglevel for domain D to n setdebug(D, n)
+
+PARI Types & Input Formats
+t_INT. Integers; hex, binary ±31; ±0x1F, ±0b101
+t_REAL. Reals ±3.14, 6.022 E23
+t_INTMOD. Integers modulo m Mod(n, m)
+t_FRAC. Rational Numbers n/m
+t_FFELT. Elt in finite field Fq ffgen(q,’t)
+t_COMPLEX. Complex Numbers x + y ∗ I
+t_PADIC. p-adic Numbers x + O(p^k)
+t_QUAD. Quadratic Numbers x + y ∗ quadgen(D,{’w})
+t_POLMOD. Polynomials modulo g Mod(f, g)
+t_POL. Polynomials a ∗ x^n + · · · + b
+t_SER. Power Series f + O(x^k)
+t_RFRAC. Rational Functions f /g
+t_QFB. Binary quadratic form Qfb(a, b, c)
+t_VEC/t_COL. Row/Column Vectors [x, y, z], [x, y, z]~
+t_VEC integer range [1..10]
+t_VECSMALL. Vector of small ints Vecsmall([x, y, z])
+t_MAT. Matrices [a, b;c, d]
+t_LIST. Lists List([x, y, z])
+t_STR. Strings "abc"
+t_INFINITY. ±∞ +oo, -oo
+
+Input/Output
+print with/without \n, TEX format   print, print1, printtex
+pretty print matrix                 printp
+print fields with separator         printsep(sep, . . .),, printsep1
+formatted printing                  printf()
+write args to file                  write, write1, writetex(file, args)
+write x in binary format            writebin(file, x)
+read file into GP                   read({file})
+. . . return as vector of lines     readvec({file})
+. . . return as vector of strings   readstr({file})
+read a string from keyboard         input()
+
+User functions and closures
+x, y are formal parameters; y defaults to Pi if parameter omitted;
+z, t are local variables (lexical scope), z initialized to 1.
+fun(x, y=Pi) = my(z=1, t); seq
+fun = (x, y=Pi) -> my(z=1, t); seq
+attach help message h to s addhelp(s, h)
+undefine symbol s (also kills help) kill(s)
+
+Control Statements (X: formal parameter in expression seq)
+if(a, {seq1}, {seq2})
+eval. seq for a ≤ X ≤ b     for(X = a, b, seq)
+for X ∈ v       foreach(v, X, seq)
+for primes a ≤ X ≤ b    forprime(X = a, b, seq)
+for primes ≡ a (mod q)  forprimestep(X = a, b, q, seq)
+for primes ≡ a (mod q)  forprimestep(X = a, b, q, seq)
+for composites a ≤ X ≤ b    forcomposite(X = a, b, seq)
+for a ≤ X ≤ b stepping s    forstep(X = a, b, s, seq)
+for X dividing n    fordiv(n, X, seq)
+X = [n, factor(n)], a ≤ n ≤ b   forfactored(X = a, b, seq)
+as above, n squarefree  forsquarefree(X = a, b, seq)
+X = [d, factor(d)], d | n   fordivfactored(n, X, seq)
+multivariable for, lex ordering     forvec(X = v, seq)
+loop over partitions of n       forpart(p = n, seq)
+permutations of S               forperm(S, p, seq)
+subsets of {1, . . . , n}       forsubset(n, p, seq)
+k-subsets of {1, . . . , n}     forsubset([n, k], p, seq)
+vectors v, q(v) ≤ B; q > 0      forqfvec(v, q, b, seq)
+H < G finite abelian group      forsubgroup(H = G)
+evaluate seq until a = 0        until(a, seq)
+while a = 0, evaluate seq       while(a, seq)
+exit n innermost enclosing loops            break({n})
+start new iteration of n-th enclosing loop  next({n})
+return x from current subroutine            return({x})
+
+</textarea>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+genmat(u,v,s="x") = matrix(u,v,i,j, eval(Str(s "" i "" j)))
+genmat(2,3)
+</script>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+zet(s) = sumalt(n=1, (-1)^(n-1)*n^(-s)) / (1 - 2^(1-s))
+zet(2)
+</script>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+a=[1,2;3,4]
+a~
+a^-1
+matdet(a)
+a*[5,6;7,8]
+</script>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+twosquares(n)=abs(qfbsolve(Qfb(1,0,1),n,2));
+threesquares_fact(n)=abs(qfsolve(matdiagonal([1,1,1,-n]))[1..3])~;
+isthreesquares(n)=n/4^(valuation(n,2)\2)%8!=7;
+foursquares_fact(n)=abs(qfsolve(matdiagonal([1,1,1,1,-n]))[1..4])~;
+isfact(n)=my(F=factor(n,2^20)[,1]);ispseudoprime(F[#F]);
+threesquares(n)=
+{
+  if(n<0,error("n not a sum of three squares"));
+  if(n<=1,return([n,0,0]));
+  if(!isthreesquares(n),error("n not a sum of three squares"));
+  if(isfact(n),return(threesquares_fact(n)));
+  forstep(i=sqrtint(n),1,-1,
+    my(P=n-i^2,v = valuation(P,2), Q = P/2^v);
+    if(Q%4==1 && ispseudoprime(Q),return(concat(i,twosquares(P)))));
+}
+foursquares(n)=
+{
+  if(n<0,error("n not a sum of four squares"));
+  if(n<=1,return([n,0,0,0]));
+  if(isfact(n),return(foursquares_fact(n)));
+  forstep(i=sqrtint(n),1,-1,
+    my(P=n-i^2);
+    if (isthreesquares(P) && isfact(P),
+        return(concat(i,threesquares_fact(P)))));
+}
+
+foursquares_test()=
+{
+  my(P=randomprime(2^500,Mod(7,8)));
+  my(F=foursquares(P)); 
+  if (#F!=4 || norml2(F)!=P,error("foursquares",P));
+  my(P=randomprime(2^500,Mod(1,8))*randomprime(2^500,Mod(7,8)));
+  my(F=foursquares(P)); 
+  if (#F!=4 || norml2(F)!=P,error("foursquares",P));
+  my(P=randomprime(2^500,Mod(1,8))*randomprime(2^500,Mod(3,8)));
+  my(F=threesquares(P)); 
+  if (#F!=3 || norml2(F)!=P,error("threesquares",P));
+  my(P=randomprime(2^500,Mod(1,8))*randomprime(2^500,Mod(5,8)));
+  my(F=threesquares(P)); 
+  if (#F!=3 || norml2(F)!=P,error("threesquares",P));
+  my(P=4*randomprime(2^500,Mod(1,4)));
+  my(F=twosquares(P));
+  if (#F!=2 || norml2(F)!=P,error("twosquares",P));
+}
+
+[twosquares(2293),threesquares(108),foursquares(2^13-1)]
+
+forprimestep(p=5,2293,4, print(qfbsolve(Qfb(1,0,1),p,2)))
+</script>
+</div>
+<hr/>
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+    -Editor:Cody Luo -Date:2024-09-24 | 
+    This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/000002pariGP-examples.html">Edit this page</a>.
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="2293/mathdemos"
+        data-repo-id="R_kgDOJ7wWzA"
+        data-category="General"
+        data-category-id="DIC_kwDOJ7wWzM4CZLY3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Odd Primes Mask</title>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true});</script>
+</head>
+
+<body>
+<h2><a href="./"><small>MathDemos:</small></a>Odd Primes Mask</h2>
+<div><p>Odd Primes Mask: `if is_prime(2*k+1) 1 else 0`;  0111011011010011...<br/>
+It can be implemented by <a href="https://doc.sagemath.org/html/en/reference/data_structures/sage/data_structures/bitset.html">Bitset </a> in sagemath or bitarray in Python.</p>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+odd_primes=primes_first_n(2^8+1)[1:]
+odd_primes_half_sub1=[(p-1)//2 for p in odd_primes]
+OddPrimesMask=FrozenBitset(odd_primes_half_sub1)
+opm=OddPrimesMask
+print(opm)
+print([x*2+1 for x in list(opm)])
+    
+</script>
+</div>
+<div><p>Sieve of Eratosthenes by OddPrimesMask</p>
+<p>$(2a+1)(2b+1)=2(2ab+a+b)+1$</p>
+<pre>opm=Bitset('01'+'110' * (5*bits//3-1))
+# 2*2*top+2+top=bits
+top=(bits-2)//5
+for b in (2..top):
+    for a in (2..b):
+        #if 2*a*b+a+b <= bits:
+        opm.discard(2*a*b+a+b)</pre>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+def odd_primes_mask(bits=15*2^8):
+    opm=Bitset('011101101101001'+'100101101101001' *(bits//15-1) )
+    for b in (3..(bits-3)//7):
+        for m in range(7*b+3,min(bits+1,2*b*(b+1)+1),2*b+1):
+            opm.discard(m)
+    return opm
+opm=odd_primes_mask(15*2^10)
+print(opm)
+print([x*2+1 for x in list(opm)]) 
+</script>
+</div>
+<p>Sieve of Sundaram <br>
+https://rosettacode.org/wiki/The_sieve_of_Sundaram#Python</p>
+<div class="sage">
+<script type="text/x-sage">
+# Python3 program to print 
+# primes smaller than n using
+# Sieve of Sundaram.
+ 
+# Prints all prime numbers smaller
+def SieveOfSundaram(n):
+     
+    # In general Sieve of Sundaram, 
+    # produces primes smaller
+    # than (2*x + 2) for a number 
+    # given number x. Since we want
+    # primes smaller than n, we 
+    # reduce n to half
+    nNew = int((n - 1) / 2);
+ 
+    # This array is used to separate 
+    # numbers of the form i+j+2ij
+    # from others where 1 <= i <= j
+    # Initialize all elements as not marked
+    marked = [0] * (nNew + 1);
+ 
+    # Main logic of Sundaram. Mark all 
+    # numbers of the form i + j + 2ij 
+    # as true where 1 <= i <= j
+    for i in range(1, nNew + 1):
+        j = i;
+        while((i + j + 2 * i * j) <= nNew):
+            marked[i + j + 2 * i * j] = 1;
+            j += 1;
+ 
+    # Since 2 is a prime number
+    if (n > 2):
+        print(2, end = " ");
+ 
+    # Print other primes. Remaining 
+    # primes are of the form 2*i + 1 
+    # such that marked[i] is false.
+    for i in range(1, nNew + 1):
+        if (marked[i] == 0):
+            print((2 * i + 1), end = " ");
+ 
+# Driver Code
+n = 2000;
+SieveOfSundaram(n);
+ 
+# This code is contributed by mits
+</script>
+</div>
+
+<div>
+<p>**Prime-Gap-Subsegments-Theorem**: In prime gap sequence, if any subsegment occurs twice, then it will continue to occur infinitely times.  such as `{2}, {4},{2*k},{2,4,2},{6,6},{2,6,4,2}...`.
+In other words, any repeated substring of OddPrimesMask occures infinitely times. Such as `0`*k, `101101101`, `1001001`,...
+</p></div>
+<hr/>
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+-Editor:Cody Luo -Date:2023-09-14, 2023-12-11 | 
+This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100004OddPrimesMask.html">Edit this page</a>.
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="2293/mathdemos"
+        data-repo-id="R_kgDOJ7wWzA"
+        data-category="General"
+        data-category-id="DIC_kwDOJ7wWzM4CZLY3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>

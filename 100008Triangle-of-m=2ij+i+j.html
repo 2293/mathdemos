@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Triangle of m=2ij+i+j</title>
+    <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true});</script>
+</head>
+
+<body>
+<h2><a href="./"><small>MathDemos:</small></a>Triangle of m=2ij+i+j</h2>
+<p>For all the ${\displaystyle \scriptstyle m\,=\,2ij+(i+j),\,1\,\leq \,\,j\,\leq \,i,\,}$ entries of the following table, 
+corresponds an odd composite number ${\displaystyle \scriptstyle N=2m+1=(2i+1)(2j+1)=2(2ij+i+j)+1,m\,\geq \,4\,}$.
+All composite odd numbers ${\displaystyle \scriptstyle N\,=\,2m+1,\,m\,\geq \,4,\,}$ have one or more entries ${\displaystyle \scriptstyle m\,=\,2ij+(i+j),\,1\,\leq \,\,j\,\leq \,i,\,}$ in the table.</p>
+<p>The j-th colum is is an arithmetic progression with a common difference of $d=2j+1$.<br>
+https://oeis.org/wiki/Odd_composites <br>
+https://oeis.org/A083487 <br></p>
+
+
+<div class="sage">
+<script type="text/x-sage">
+def entry(i, j): return 2*i*j + i + j
+for i in (1..20):
+    row = [entry(i, j)  for j in (1..i)]
+    print(row)
+
+</script>
+</div>
+<p>GridGraph[{i+1，j+1}] has $2ij+i+j$ edges in total, increasing $2i+2j$ edges from GridGraph[{i，j}]</p>
+<div class="sage">
+<script type="text/x-sage">
+g23 = graphs.GridGraph([2,3])
+g34 = graphs.GridGraph([3,4])
+(g23.show(),g34.show())
+(g23.size(),g34.size())        
+</script>
+</div>
+
+<hr/>
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+    -Editor:Cody Luo -Date:2024-01-21 | <a href="https://github.com/2293/mathdemos/edit/main/100008Triangle-of-m=2ij+i+j.html">Edit this page</a>.
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="2293/mathdemos"
+        data-repo-id="R_kgDOJ7wWzA"
+        data-category="General"
+        data-category-id="DIC_kwDOJ7wWzM4CZLY3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>

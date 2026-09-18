@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>runner-up number</title>
+    <!-- <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css"> -->
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+    <script>sagecell.makeSagecell({ "inputLocation": ".sage" ,autoeval:true,linked:true,linkKey:'mathdemo'});</script>
+</head>
+
+<body>
+<h2><a href="/mathdemos"><small>MathDemos:</small></a>runner-up number</h2>
+<div>
+<p>Visit <a href="https://oeis.org/draft/A365521">https://oeis.org/draft/A365521</a> for the latest revision of <a href="https://oeis.org/A365521">A365521</a>  in OEIS.</p>
+<p>跟跑数列,收集在两个相继质数之间具有相同显著质因子的一组数, 但显著部分最大的那个数被排除.</p>
+<p>This sequence, so called runner-up numbers, collects a set of numbers that have the same significant prime factor between two successive prime numbers, but the number with the largest significant part is excluded.
+    Runner-up numbers are the integers i such that there exists j,prevprime(i)<j<nextprime(i) satisfies
+    A088387(i)=A088387(j) and A034699(i)&lt;A034699(j).
+</p>
+</div>
+<div class="sage">
+<script type="text/x-sage">
+def spf(n):
+    return max(((p**e, p) for p, e in list(factor(n))), default=(0, 1))[1]
+
+list([spf(n) for n in range(113,128)])
+    
+</script>
+</div>
+
+<div class="sage" id="sage2">
+<script type="text/x-sage">
+p=nth_prime
+def pick_same_hpf_between_two_successive_primes(top):
+    S=[spf(n) for n in range(1,top)]
+    S.insert(0,0)
+    howmanyprimes=prime_pi(top-1)
+    i=1
+    while(i<howmanyprimes):
+        interval=S[p(i):p(i+1)+1]
+        if len(interval)!=len(set(interval)):
+            print('duplicate',len(set(interval))-len(interval),':',i,p(i),interval)
+        i+=1
+    return i
+pick_same_hpf_between_two_successive_primes(50000)   
+</script>
+</div>
+
+<div>
+<pre>Note:spf of 139..149 are 139, 7, 47, 71, 13, 2, 29, 73, 7, 37, 149
+spf(140)==spf(147)==7
+[619, 31, 3, 311, 89, 2, 5, 313, 19, 157, 37, 3,631]
+spf(621)==spf(630)==3
+[2503, 313, 167, 179, 109, 19, 193, 251, 3, 157, 359, 419, 503, 37, 839, 1259, 229, 3,2521]
+spf(2511)==spf(2520)==3
+so, spf(n) can NOT always as distinct prime factors for p[i]..p[i+1].
+</pre></div>
+<hr/>
+<div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+    -Editor:Cody Luo -Date:2023-09-08 | 
+    This site is open source. <a href="https://github.com/2293/mathdemos/edit/main/100012significant%20prime%20factor.html">Improve this page</a>.
+</div>
+<script src="https://giscus.app/client.js"
+        data-repo="2293/mathdemos"
+        data-repo-id="R_kgDOJ7wWzA"
+        data-category="General"
+        data-category-id="DIC_kwDOJ7wWzM4CZLY3"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+</script>
+</body>
+</html>
